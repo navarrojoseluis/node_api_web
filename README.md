@@ -1,19 +1,21 @@
 ## Node.js project
 
 ### Vagrant
-- Start vagrant
+Ubuntu 18.04 Vagrant Box.\
+Vagrant password: vagrant
+- Start vagrant:
 ```vagrant
 vagrant up nodejs
 ```
-- Stop vagrant
+- Stop vagrant:
 ```vagrant
 vagrant halt nodejs
 ```
-Destroy vagrant
+- Destroy vagrant:
 ```vagrant
 vagrant destroy nodejs
 ```
-- Connect to vagrant 
+- Connect to vagrant:
 ```vagrant
 vagrant ssh nodejs
 ```
