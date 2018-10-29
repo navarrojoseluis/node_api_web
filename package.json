@@ -2,13 +2,16 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "Node.js project example",
-  "main": "index.js",
   "scripts": {
+    "start": "node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/navarrojoseluis/node_api_web.git"
   },
-  "author": "Jose Luis Navarro"
+  "author": "Jose Luis Navarro",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
