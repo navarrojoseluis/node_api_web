@@ -1,0 +1,19 @@
+- hosts: nodejs
+  become: true  
+  tasks:
+    - name: Install gpg key for nodejs
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+    - name: Install nodejs repository
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ANSIBLE_DISTRIBUTION_RELEASE }} main"
+        state: present
+        update_cache: yes
+    - name: Install nodejs
+      apt:
+        name: nodejs
+        state: present
+  vars:
+    NODEJS_VERSION: "8"
+    ANSIBLE_DISTRIBUTION_RELEASE: "xenial" 

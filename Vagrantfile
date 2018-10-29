@@ -18,5 +18,9 @@ Vagrant.configure("2") do |config|
       vb.memory = "1024"
       vb.cpus = 1
     end
+
+    nodejs.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "ansible/nodejs.yml"
+    end
   end
 end
