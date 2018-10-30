@@ -1,0 +1,47 @@
+- hosts: db
+  become: true
+  tasks:
+    - name: Install dirmngr needed to add a new repository
+      apt: name=dirmngr state=present
+    - name: MongoDB | Import the public key used by package management system
+      shell: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
+    - name: MongoDB | Create a file for mongoDB
+      shell: echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.0.list
+    - name: MongoDB | Reload local pachage database
+      shell: sudo apt-get update
+    - name: Mongodb | Install the mongoDB packages
+      shell: sudo apt-get install -y mongodb-org
+    - name: MongoDB | Start mongoDB
+      shell: sudo service mongod start
+    - name: Modify MongoDB server configuration
+      shell: sudo sed -ie "/bindIp/ s/127.0.0.1/0.0.0.0/" /etc/mongod.conf
+    - name: pyMongo | Instaling easy
+      shell: sudo python -m easy_install pymongo
+    - name: pyMongo | Upgrade easy
+      shell: sudo python -m easy_install -U pymongo
+    - name: MongoDB | Create root user
+      mongodb_user:
+        database: admin
+        name: "{{ROOT_USER}}"
+        password: "{{ROOT_PASSWORD}}"
+        roles: "readWriteAnyDatabase,dbAdminAnyDatabase,userAdminAnyDatabase"
+        state: present
+    - name : MongoDB | Create administrative user
+      mongodb_user:
+        login_user: "{{ROOT_USER}}"
+        login_password: "{{ROOT_PASSWORD}}"
+        login_port: "27017"
+        database: "{{MONGO_DB_NAME}}"
+        name: "{{USER}}"
+        password: "{{USER_PASSWORD}}"
+        roles:
+          - { db: 'admin' , role: 'readWrite' }
+          - { db: "{{MONGO_DB_NAME}}" , role: 'readWrite' }
+    - name: MongoDB | restart mongoDB
+      shell: sudo service mongod restart
+  vars:
+    MONGO_DB_NAME: "mongodb"
+    ROOT_USER: "root"
+    ROOT_PASSWORD: "root"
+    USER: "user"
+    USER_PASSWORD: "user"
