@@ -10,14 +10,15 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/navarrojoseluis/node_api_web.git"
-  },  
+  },
   "nodemonConfig": {
     "watch": [
       "*.js"
     ]
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.3.7"
   },
   "devDependencies": {
     "nodemon": "^1.18.5"
