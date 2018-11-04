@@ -11,12 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/navarrojoseluis/node_api_web.git"
   },
-  "nodemonConfig": {
-    "watch": [
-      "*.js"
-    ]
-  },
+
   "dependencies": {
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "mongoose": "^5.3.7"
   },
