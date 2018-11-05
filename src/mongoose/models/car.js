@@ -1,4 +1,5 @@
 'use strict'
+const config = require('../../../config/config');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -8,7 +9,7 @@ var CarSchema = new Schema(
     },
     {
         timestamps: { createdAt: 'created_at' },
-        collection: 'cars'
+        collection: config.CARS_COLLECTION
     }
 );
   

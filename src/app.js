@@ -1,4 +1,5 @@
 'use strict';
+const conf = require('../config/config');
 
 let express = require('express');
 const cookieParser = require('cookie-parser');
@@ -12,12 +13,12 @@ const routes = require('./api/routes');
 routes(app);
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://10.10.0.3:27017/admin', { useNewUrlParser: true });
+mongoose.connect('mongodb://'+ conf.DB_HOST + ':' + conf.DB_PORT + '/' + conf.DB_NAME, { useNewUrlParser: true });
 
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 });
   
-app.listen(3000, function () {
+app.listen(conf.API_PORT, function () {
     console.log('Listening on port 3000');
 });
