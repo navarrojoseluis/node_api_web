@@ -2,9 +2,11 @@ var CarController = require('../../controllers/car');
 
 exports.createCar = function(req, res) {
     console.debug('Creating new car...');
-    let body = req.body;   
+    let body = req.body;  
     if(!body || Object.keys(body).length === 0){
-        let err = 'Body must not be empty';
+        let err = {
+            message: 'Body must not be empty'
+        };
         console.debug(err);
         return res.status(400).send(err);
     }
