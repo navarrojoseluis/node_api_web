@@ -22,3 +22,5 @@ app.use(function(req, res) {
 app.listen(conf.API_PORT, function () {
     console.log('Listening on port 3000');
 });
+
+module.exports = app;
