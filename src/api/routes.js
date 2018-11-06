@@ -1,13 +1,8 @@
-// var express = require('express');
-// var router = express.Router();
-
-// var CarHandler = require('./handlers/car.handler');
-
-// router.post('/car/create', CarHandler.createCar);
-
 'use strict';
+let conf = require('../../config/config');
+
 module.exports = function(app) {
     var CarHandler = require('./handlers/car.handler');
 
-    app.post('/car/create', CarHandler.createCar);
+    app.post(conf.CREATE_CAR_ROUTE, CarHandler.createCar);
 };
