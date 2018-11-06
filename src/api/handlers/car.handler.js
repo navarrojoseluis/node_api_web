@@ -33,3 +33,26 @@ exports.getCars = function(req, res){
         return res.status(200).send(cars);
     });
 }
+
+exports.deleteCar = function(req, res) {
+    console.debug('Deleting car...');
+    let params = req.params;  
+    if(!params || Object.keys(params).length === 0){
+        let err = {
+            message: 'Params must not be empty'
+        };
+        console.debug(err);
+        return res.status(400).send(err);
+    }
+
+    let id = params['id'];
+
+    console.debug('Car id: ' + id);
+    CarController.deleteCar(id, function(car, err){
+        if(err){
+            return res.status(400).send(err);
+        }
+        console.debug('Car deleted');
+        return res.status(200).send(car);
+    });
+}; 

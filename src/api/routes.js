@@ -6,4 +6,6 @@ module.exports = function(app) {
 
     app.post(conf.CREATE_CAR_ROUTE, CarHandler.createCar);
     app.get(conf.GET_CARS_ROUTE, CarHandler.getCars);
+    app.delete(conf.DELETE_CARS_ROUTE, CarHandler.deleteCar);
+
 };

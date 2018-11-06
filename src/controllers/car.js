@@ -31,3 +31,26 @@ exports.getCars = function(callback) {
         return callback(car);
     });    
 };
+
+exports.deleteCar = function(id, callback) {
+    if(id === null || id === undefined){
+        let err = {
+            message: 'Attribute id not found'
+        }
+        console.debug(err);
+        return callback(null, err);
+    }
+    Car.findOneAndDelete({ _id: id }, function(err, car) {
+        if (err){
+            return callback.send(err);
+        }
+        console.debug(car);
+        if (car === null){
+            let err = {
+                message: 'Car with id ' + id + ' not found'
+            }
+            return callback(null, err);
+        }
+        return callback(car);
+    });    
+};
