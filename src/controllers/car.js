@@ -1,7 +1,7 @@
+'use strict';
 const Car = require('../mongoose/models/car');
 
-exports.createCar = function(name, callback) {
-    'use strict';
+exports.createCar = function(name, callback) {    
     if(name === null || name === undefined){
         let err = {
             message: 'Attribute name not found'
@@ -21,4 +21,13 @@ exports.createCar = function(name, callback) {
         }
         return callback(car);       
     });
+};
+
+exports.getCars = function(callback) {
+    Car.find({}, function(err, car) {
+        if (err){
+          return callback.send(err);
+        }
+        return callback(car);
+    });    
 };

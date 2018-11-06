@@ -22,3 +22,14 @@ exports.createCar = function(req, res) {
         return res.status(200).send(car);
     });
 }; 
+
+exports.getCars = function(req, res){
+    console.debug('Getting cars...');
+    CarController.getCars(function(cars, err){
+        if(err){
+            return res.status(400).send(err);
+        }
+        console.debug(cars);
+        return res.status(200).send(cars);
+    });
+}

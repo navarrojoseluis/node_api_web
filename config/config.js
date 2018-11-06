@@ -5,7 +5,8 @@ const CONFIG = {};
 CONFIG.API_PORT = 3000;
 
 // API routes
-CONFIG.CREATE_CAR_ROUTE = '/car/create';
+CONFIG.CREATE_CAR_ROUTE = '/car';
+CONFIG.GET_CARS_ROUTE = '/car';
 
 // Database configuration
 CONFIG.DB_HOST = '10.10.0.3';
