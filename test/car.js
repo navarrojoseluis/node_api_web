@@ -42,7 +42,7 @@ describe('Cars', () => {
         });
         it('it should POST a car', (done) => {
             let car = {
-                name: 'car_name'
+                name: 'carName'
             };
             chai.request(app)
                 .post(conf.CREATE_CAR_ROUTE)
@@ -53,6 +53,39 @@ describe('Cars', () => {
                     res.body.should.have.property('name');
                     done();
                 });
+        });
+    });
+
+    /*
+     * Test /GET get car route
+     */
+    describe('/GET/:id car', () => {
+        it('it should not GET a car that not exist', (done) => {
+            let fake_car_id = '000000000000000000000000';
+            chai.request(app)
+                .get('/car/' + fake_car_id)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Car with id ' + fake_car_id + ' not found');
+                    done();
+                });
+        });
+        it('it should GET a car', (done) => {
+            let car = new Car({
+                name: 'carToBeGetted'
+            });
+            car.save((err, car) => {
+                chai.request(app)
+                    .get('/car/' + car._id)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('_id');
+                        res.body.should.have.property('name');
+                        done();
+                    });
+            });
         });
     });
 
@@ -73,9 +106,9 @@ describe('Cars', () => {
     });
 
     /*
-     * Test /DELETE get car route
+     * Test /DELETE car route
      */
-    describe('/DELETE cars', () => {
+    describe('/DELETE/:id car', () => {
         it('it should not DELETE a car that not exist', (done) => {
             let fake_car_id = '000000000000000000000000';
             chai.request(app)
