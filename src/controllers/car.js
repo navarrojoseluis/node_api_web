@@ -42,7 +42,7 @@ exports.deleteCar = function(id, callback) {
     }
     Car.findOneAndDelete({ _id: id }, function(err, car) {
         if (err){
-            return callback.send(err);
+            return callback(null, err);
         }
         console.debug(car);
         if (car === null){
