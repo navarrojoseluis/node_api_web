@@ -23,6 +23,28 @@ exports.createCar = function(req, res) {
     });
 }; 
 
+exports.getCar = function(req, res){
+    console.debug('Getting car...');
+    let params = req.params;  
+    if(!params || Object.keys(params).length === 0){
+        let err = {
+            message: 'Params must not be empty'
+        };
+        console.debug(err);
+        return res.status(400).send(err);
+    }
+
+    let id = params['id'];
+
+    CarController.getCar(id, function(cars, err){
+        if(err){
+            return res.status(400).send(err);
+        }
+        console.debug(cars);
+        return res.status(200).send(cars);
+    });
+}
+
 exports.getCars = function(req, res){
     console.debug('Getting cars...');
     CarController.getCars(function(cars, err){

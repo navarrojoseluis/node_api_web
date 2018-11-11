@@ -23,10 +23,32 @@ exports.createCar = function(name, callback) {
     });
 };
 
+exports.getCar = function(id, callback) {
+    if(id === null || id === undefined){
+        let err = {
+            message: 'Param id not found'
+        }
+        console.debug(err);
+        return callback(null, err);
+    }
+    Car.findById(id, function(err, car) {
+        if (err){
+          return callback(null, err);
+        }
+        if (car === null){
+            let err = {
+                message: 'Car with id ' + id + ' not found'
+            }
+            return callback(null, err);
+        }
+        return callback(car);
+    });    
+};
+
 exports.getCars = function(callback) {
     Car.find({}, function(err, car) {
         if (err){
-          return callback.send(err);
+          return callback(null, err);
         }
         return callback(car);
     });    
@@ -35,7 +57,7 @@ exports.getCars = function(callback) {
 exports.deleteCar = function(id, callback) {
     if(id === null || id === undefined){
         let err = {
-            message: 'Attribute id not found'
+            message: 'Param id not found'
         }
         console.debug(err);
         return callback(null, err);

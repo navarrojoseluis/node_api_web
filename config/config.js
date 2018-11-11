@@ -6,6 +6,7 @@ CONFIG.API_PORT = 3000;
 
 // API routes
 CONFIG.CREATE_CAR_ROUTE = '/car';
+CONFIG.GET_CAR_ROUTE = '/car/:id';
 CONFIG.GET_CARS_ROUTE = '/car';
 CONFIG.DELETE_CARS_ROUTE = '/car/:id';
 
