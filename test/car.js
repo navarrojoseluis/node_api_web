@@ -13,7 +13,7 @@ chai.use(chaiHttp);
  */
 describe('Cars', () => {
     /*
-     * Test /POST create car route
+     * Test /POST car route
      */
     describe('/POST car', () => {
         it('it should not POST a car without body', (done) => {
@@ -57,7 +57,7 @@ describe('Cars', () => {
     });
 
     /*
-     * Test /GET get car route
+     * Test /GET/:id car route
      */
     describe('/GET/:id car', () => {
         it('it should not GET a car that not exist', (done) => {
@@ -90,7 +90,7 @@ describe('Cars', () => {
     });
 
     /*
-     * Test /GET get all cars route
+     * Test /GET cars route
      */
     describe('/GET cars', () => {
         it('it should GET all the cars', (done) => {
@@ -106,7 +106,7 @@ describe('Cars', () => {
     });
 
     /*
-     * Test /DELETE car route
+     * Test /DELETE/:id car route
      */
     describe('/DELETE/:id car', () => {
         it('it should not DELETE a car that not exist', (done) => {
