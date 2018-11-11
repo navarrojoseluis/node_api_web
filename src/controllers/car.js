@@ -54,6 +54,37 @@ exports.getCars = function(callback) {
     });    
 };
 
+exports.updateCar = function(id, name, callback) {
+    if(id === null || id === undefined){
+        let err = {
+            message: 'Param id not found'
+        }
+        console.debug(err);
+        return callback(null, err);
+    }
+    let query = {};
+    query['_id'] = id;
+
+    let carAttributes = {};
+    carAttributes['name'] = name;
+    
+    let options = {};
+    options['new'] = true;
+
+    Car.findOneAndUpdate(query, carAttributes, options, function(err, car) {
+        if (err){
+          return callback(null, err);
+        }
+        if (car === null){
+            let err = {
+                message: 'Car with id ' + query._id + ' not found'
+            }
+            return callback(null, err);
+        }
+        return callback(car);
+    });    
+};
+
 exports.deleteCar = function(id, callback) {
     if(id === null || id === undefined){
         let err = {

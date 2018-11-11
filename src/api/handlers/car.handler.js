@@ -56,6 +56,39 @@ exports.getCars = function(req, res){
     });
 }
 
+exports.updateCar = function(req, res){
+    console.debug('Updatting car...');
+    let params = req.params;  
+    if(!params || Object.keys(params).length === 0){
+        let err = {
+            message: 'Params must not be empty'
+        };
+        console.debug(err);
+        return res.status(400).send(err);
+    }
+
+    let id = params['id'];
+
+    let body = req.body;
+    if(!body || Object.keys(body).length === 0){
+        let err = {
+            message: 'Body must not be empty'
+        };
+        console.debug(err);
+        return res.status(400).send(err);
+    }
+
+    let name = body['name'];
+
+    CarController.updateCar(id, name, function(cars, err){
+        if(err){
+            return res.status(400).send(err);
+        }
+        console.debug(cars);
+        return res.status(200).send(cars);
+    });
+}
+
 exports.deleteCar = function(req, res) {
     console.debug('Deleting car...');
     let params = req.params;  

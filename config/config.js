@@ -8,6 +8,7 @@ CONFIG.API_PORT = 3000;
 CONFIG.CREATE_CAR_ROUTE = '/car';
 CONFIG.GET_CAR_ROUTE = '/car/:id';
 CONFIG.GET_CARS_ROUTE = '/car';
+CONFIG.UPDATE_CAR_ROUTE = '/car/:id';
 CONFIG.DELETE_CARS_ROUTE = '/car/:id';
 
 // Database configuration
