@@ -9,7 +9,7 @@ var CarSchema = new Schema(
     },
     {
         timestamps: { createdAt: 'created_at' },
-        collection: config.CARS_COLLECTION
+        collection: config.mongodbcollections.carscollection
     }
 );
   

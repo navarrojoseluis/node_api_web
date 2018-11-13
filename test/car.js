@@ -19,7 +19,7 @@ describe('Cars', () => {
         it('it should not POST a car without body', (done) => {
             let car = {};
             chai.request(app)
-                .post(conf.CREATE_CAR_ROUTE)
+                .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -32,7 +32,7 @@ describe('Cars', () => {
                 field: 'field'
             };
             chai.request(app)
-                .post(conf.CREATE_CAR_ROUTE)
+                .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
                     res.should.have.status(400);
@@ -45,7 +45,7 @@ describe('Cars', () => {
                 name: 'carName'
             };
             chai.request(app)
-                .post(conf.CREATE_CAR_ROUTE)
+                .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
                     res.should.have.status(200);
@@ -95,7 +95,7 @@ describe('Cars', () => {
     describe('/GET cars', () => {
         it('it should GET all the cars', (done) => {
             chai.request(app)
-                .get(conf.GET_CARS_ROUTE)
+                .get(conf.apiroutes.getcars)
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');

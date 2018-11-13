@@ -1,22 +1,35 @@
 'use strict'
-const CONFIG = {};
+let defaultEnvironmentSettings = {
+    mongodb: {
+        host: '10.10.0.3',
+        port: '27017',
+        db: 'admin'
+    },
+    mongodbcollections: {
+        carscollection: 'cars'
+    },
+    api: {
+        port: '3000'
+    },
+    apiroutes: {
+        createcar: '/car',
+        getcar: '/car/:id',
+        getcars: '/car',
+        updatecar: '/car/:id',
+        deletecar: '/car/:id'
+    }
+};
 
-// API configuration
-CONFIG.API_PORT = 3000;
+function loadEnvironmentSettings() {
+    'use strict';
+    let environment = process.env.NODE_ENV || 'development';
+    let environmentSettings = {};
+    try {
+        environmentSettings = require('./config/' + environment + '.json');
+    } catch (err) {
+        throw new Error('Cannot load ' + environment + '.json settings file.');
+    }
+    return environmentSettings;
+}
 
-// API routes
-CONFIG.CREATE_CAR_ROUTE = '/car';
-CONFIG.GET_CAR_ROUTE = '/car/:id';
-CONFIG.GET_CARS_ROUTE = '/car';
-CONFIG.UPDATE_CAR_ROUTE = '/car/:id';
-CONFIG.DELETE_CARS_ROUTE = '/car/:id';
-
-// Database configuration
-CONFIG.DB_HOST = '10.10.0.3';
-CONFIG.DB_PORT = '27017';
-CONFIG.DB_NAME = 'admin';
-
-// Database collections
-CONFIG.CARS_COLLECTION = 'cars';
-
-module.exports = CONFIG;
+module.exports = Object.assign(defaultEnvironmentSettings, loadEnvironmentSettings());

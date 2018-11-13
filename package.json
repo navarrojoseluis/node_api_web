@@ -5,6 +5,8 @@
   "author": "Jose Luis Navarro",
   "scripts": {
     "start": "nodemon -L ./src/app.js",
+    "start-development": "export NODE_ENV=development && nodemon -L ./src/app.js",
+    "start-test": "export NODE_ENV=test && nodemon -L ./src/app.js",
     "test": "mocha --exit"
   },
   "repository": {
