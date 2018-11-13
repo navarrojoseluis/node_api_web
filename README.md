@@ -58,4 +58,4 @@ npm run test
 ```
 
 ## License
-[MIT](https://github.com/navarrojoseluis/node_api_web/blob/development/LICENSE)
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/navarrojoseluis/node_api_web/blob/development/LICENSE) file for details.
