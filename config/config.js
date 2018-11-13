@@ -1,24 +1,4 @@
-'use strict'
-let defaultEnvironmentSettings = {
-    mongodb: {
-        host: '10.10.0.3',
-        port: '27017',
-        db: 'admin'
-    },
-    mongodbcollections: {
-        carscollection: 'cars'
-    },
-    api: {
-        port: '3000'
-    },
-    apiroutes: {
-        createcar: '/car',
-        getcar: '/car/:id',
-        getcars: '/car',
-        updatecar: '/car/:id',
-        deletecar: '/car/:id'
-    }
-};
+let defaultEnvironmentSettings = require('./config/default.json');
 
 function loadEnvironmentSettings() {
     'use strict';
