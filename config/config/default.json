@@ -1,14 +1,14 @@
 {
     "mongodb": {
         "host": "10.10.0.3",
-        "port": "27017",
+        "port": 27017,
         "db": "admin"
     },
     "mongodbcollections": {
         "carscollection": "cars"
     },
     "api": {
-        "port": "3000"
+        "port": 3000
     },
     "apiroutes": {
         "createcar": "/car",
