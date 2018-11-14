@@ -4,6 +4,9 @@
       "port": 27017,
       "db": "admin"
    },
+   "mongodbcollections": {
+      "carscollection": "testcars"
+   },
    "api": {
       "port": 3000
    }

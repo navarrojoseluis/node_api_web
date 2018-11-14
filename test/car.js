@@ -1,3 +1,6 @@
+process.env.NODE_ENV = 'test';
+
+let mongoose = require("mongoose");
 let Car = require('../src/mongoose/models/car');
 let conf = require('../config/config');
 
@@ -186,4 +189,11 @@ describe('Cars', () => {
         });
     });
 
+    /*
+     * Delete collection after test
+     */
+    after((done) => {
+        mongoose.connection.db.dropCollection(conf.mongodbcollections.carscollection);
+        done();
+    });
 });
