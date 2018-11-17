@@ -1,5 +1,4 @@
 'use strict';
-let conf = require('../../config/config');
 
 module.exports = function (app) {
     var CarHandler = require('./handlers/car.handler');
