@@ -1,17 +1,22 @@
 'use strict';
-const conf = require('../config/config');
+// Load environment config
+global.conf = require('../config/config');
+// Setup logger
+global.logger = require('./utils/logger').getLogger(conf.logger);
 
-let express = require('express');
+const express = require('express');
 const cookieParser = require('cookie-parser');
 
-let app = express();
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// API Routes
 const routes = require('./api/routes'); 
 routes(app);
 
+// Mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://'+ conf.mongodb.host + ':' + conf.mongodb.port + '/' + conf.mongodb.db, { useNewUrlParser: true });
 

@@ -6,7 +6,7 @@ exports.createCar = function(name, callback) {
         let err = {
             message: 'Attribute name not found'
         }
-        console.debug(err);
+        logger.error(err);
         return callback(null, err);
     }
 
@@ -14,7 +14,7 @@ exports.createCar = function(name, callback) {
     carAttributes['name'] = name;
 
     let new_car = new Car(carAttributes);
-    console.debug('New car: ' + new_car);
+    logger.debug('New car: ' + new_car);
     new_car.save(function(err, car) {
         if (err){
             return callback(null, err);            
@@ -28,7 +28,7 @@ exports.getCar = function(id, callback) {
         let err = {
             message: 'Param id not found'
         }
-        console.debug(err);
+        logger.error(err);
         return callback(null, err);
     }
     Car.findById(id, function(err, car) {
@@ -59,7 +59,7 @@ exports.updateCar = function(id, name, callback) {
         let err = {
             message: 'Param id not found'
         }
-        console.debug(err);
+        logger.error(err);
         return callback(null, err);
     }
     let query = {};
@@ -90,14 +90,14 @@ exports.deleteCar = function(id, callback) {
         let err = {
             message: 'Param id not found'
         }
-        console.debug(err);
+        logger.error(err);
         return callback(null, err);
     }
     Car.findOneAndDelete({ _id: id }, function(err, car) {
         if (err){
             return callback(null, err);
         }
-        console.debug(car);
+        logger.debug(car);
         if (car === null){
             let err = {
                 message: 'Car with id ' + id + ' not found'
