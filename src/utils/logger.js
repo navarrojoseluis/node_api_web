@@ -2,8 +2,6 @@ function getLogger(config) {
     'use strict';
     const winston = require('winston');
 
-    const env = process.env.NODE_ENV || 'development';
-
     const consoleFormat = winston.format.combine(
         winston.format.colorize(),
         winston.format.timestamp()
@@ -25,7 +23,7 @@ function getLogger(config) {
     };
 
     let logger = winston.createLogger({
-        level: env === 'development' ? 'debug' : 'info',
+        level: config.level,
         levels: customLevels.levels,
         transports: [
             new winston.transports.Console({
