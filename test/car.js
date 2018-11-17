@@ -25,7 +25,7 @@ describe('Cars', () => {
                 .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.badrequest);
                     res.body.should.have.property('message').eql('Body must not be empty');
                     done();
                 });
@@ -38,7 +38,7 @@ describe('Cars', () => {
                 .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.badrequest);
                     res.body.should.have.property('message').eql('Attribute name not found');
                     done();
                 });
@@ -51,7 +51,7 @@ describe('Cars', () => {
                 .post(conf.apiroutes.createcar)
                 .send(car)
                 .end((err, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(conf.apistatuscodes.ok);
                     res.body.should.have.property('_id');
                     res.body.should.have.property('name');
                     done();
@@ -68,7 +68,7 @@ describe('Cars', () => {
             chai.request(app)
                 .get('/car/' + fake_car_id)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.notfound);
                     res.body.should.be.a('object');
                     res.body.should.have.property('message').eql('Car with id ' + fake_car_id + ' not found');
                     done();
@@ -82,7 +82,7 @@ describe('Cars', () => {
                 chai.request(app)
                     .get('/car/' + car._id)
                     .end((err, res) => {
-                        res.should.have.status(200);
+                        res.should.have.status(conf.apistatuscodes.ok);
                         res.body.should.be.a('object');
                         res.body.should.have.property('_id');
                         res.body.should.have.property('name');
@@ -100,9 +100,8 @@ describe('Cars', () => {
             chai.request(app)
                 .get(conf.apiroutes.getcars)
                 .end((err, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(conf.apistatuscodes.ok);
                     res.body.should.be.a('array');
-                    // res.body.length.should.be.eql(1);
                     done();
                 });
         });
@@ -121,7 +120,7 @@ describe('Cars', () => {
                 .put('/car/' + fake_car_id)
                 .send(car)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.notfound);
                     res.body.should.be.a('object');
                     res.body.should.have.property('message').eql('Car with id ' + fake_car_id + ' not found');
                     done();
@@ -134,7 +133,7 @@ describe('Cars', () => {
                 .put('/car/' + fake_car_id)
                 .send(car)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.badrequest);
                     res.body.should.be.a('object');
                     res.body.should.have.property('message').eql('Body must not be empty');
                     done();
@@ -149,7 +148,7 @@ describe('Cars', () => {
                     .put('/car/' + car._id)
                     .send(car)
                     .end((err, res) => {
-                        res.should.have.status(200);
+                        res.should.have.status(conf.apistatuscodes.ok);
                         res.body.should.have.property('_id');
                         res.body.should.have.property('name');
                         done();
@@ -167,7 +166,7 @@ describe('Cars', () => {
             chai.request(app)
                 .delete('/car/' + fake_car_id)
                 .end((err, res) => {
-                    res.should.have.status(400);
+                    res.should.have.status(conf.apistatuscodes.notfound);
                     res.body.should.be.a('object');
                     res.body.should.have.property('message').eql('Car with id ' + fake_car_id + ' not found');
                     done();
@@ -181,7 +180,7 @@ describe('Cars', () => {
                 chai.request(app)
                     .delete('/car/' + car._id)
                     .end((err, res) => {
-                        res.should.have.status(200);
+                        res.should.have.status(conf.apistatuscodes.ok);
                         res.body.should.be.a('object');
                         done();
                     });

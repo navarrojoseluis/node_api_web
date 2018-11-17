@@ -17,6 +17,11 @@
         "updatecar": "/car/:id",
         "deletecar": "/car/:id"
     },
+    "apistatuscodes": {
+        "ok": 200,
+        "badrequest": 400,
+        "notfound": 404
+    },
     "logger": {
         "level": "debug"
     }

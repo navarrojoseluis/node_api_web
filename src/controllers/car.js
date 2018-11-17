@@ -4,6 +4,7 @@ const Car = require('../mongoose/models/car');
 exports.createCar = function(name, callback) {    
     if(name === null || name === undefined){
         let err = {
+            status: conf.apistatuscodes.badrequest,
             message: 'Attribute name not found'
         }
         logger.error(err);
@@ -26,6 +27,7 @@ exports.createCar = function(name, callback) {
 exports.getCar = function(id, callback) {
     if(id === null || id === undefined){
         let err = {
+            status: conf.apistatuscodes.badrequest,
             message: 'Param id not found'
         }
         logger.error(err);
@@ -37,6 +39,7 @@ exports.getCar = function(id, callback) {
         }
         if (car === null){
             let err = {
+                status: conf.apistatuscodes.notfound,
                 message: 'Car with id ' + id + ' not found'
             }
             return callback(null, err);
@@ -57,6 +60,7 @@ exports.getCars = function(callback) {
 exports.updateCar = function(id, name, callback) {
     if(id === null || id === undefined){
         let err = {
+            status: conf.apistatuscodes.badrequest,
             message: 'Param id not found'
         }
         logger.error(err);
@@ -77,6 +81,7 @@ exports.updateCar = function(id, name, callback) {
         }
         if (car === null){
             let err = {
+                status: conf.apistatuscodes.notfound,
                 message: 'Car with id ' + query._id + ' not found'
             }
             return callback(null, err);
@@ -88,6 +93,7 @@ exports.updateCar = function(id, name, callback) {
 exports.deleteCar = function(id, callback) {
     if(id === null || id === undefined){
         let err = {
+            status: conf.apistatuscodes.badrequest,
             message: 'Param id not found'
         }
         logger.error(err);
@@ -100,6 +106,7 @@ exports.deleteCar = function(id, callback) {
         logger.debug(car);
         if (car === null){
             let err = {
+                status: conf.apistatuscodes.notfound,
                 message: 'Car with id ' + id + ' not found'
             }
             return callback(null, err);
