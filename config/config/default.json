@@ -16,5 +16,8 @@
         "getcars": "/car",
         "updatecar": "/car/:id",
         "deletecar": "/car/:id"
+    },
+    "logger": {
+        "level": "debug"
     }
 }
